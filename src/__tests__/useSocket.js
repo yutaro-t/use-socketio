@@ -36,4 +36,13 @@ describe("useSocket", () => {
     expect(socket).toEqual(socketMock);
     expect(socket.on).not.toHaveBeenCalled();
   });
+
+  it("should be able to listen to multiple events", () => {
+    const socket = useSocket({
+      'something': () => {},
+      'anotherthing': () => {},
+    });
+    expect(socket).toEqual(socketMock);
+    expect(socket.on).toHaveBeenCalledTimes(2);
+  })
 });
